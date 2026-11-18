@@ -28,5 +28,6 @@ python -m http.server 8000 --bind 127.0.0.1
 | --- | --- |
 | `index.html` | 游戏页面、棋盘和玩法弹窗 |
 | `styles.css` | 桌面与手机布局、方块配色 |
+| `assets/aurora-arcade.webp` | 霓虹极光背景 |
 | `game.js` | 移动、合并、随机方块、撤回和胜负判断 |
 | `app.js` | 界面渲染、键盘与触屏输入、本地存档 |
