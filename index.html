@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f0">
+  <title>叠数 · 2048 数字合并游戏</title>
+  <meta name="description" content="滑动棋盘，合并相同的数字，试着叠出 2048。">
+  <link rel="stylesheet" href="styles.css">
+  <script src="game.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>叠数</span>
+      </div>
+      <button id="help-button" class="help-button" type="button" aria-haspopup="dialog">
+        <span class="help-icon" aria-hidden="true">?</span> 玩法
+      </button>
+    </header>
+
+    <main class="game-layout">
+      <section class="game-info" aria-labelledby="game-title">
+        <h1 id="game-title">2048<span aria-hidden="true">.</span></h1>
+        <p class="intro">滑动棋盘，合并相同的数字。<br>试着叠出 2048。</p>
+
+        <dl class="scores">
+          <div class="score-card current-score">
+            <dt>当前分数</dt>
+            <dd id="score">0</dd>
+          </div>
+          <div class="score-card">
+            <dt>最高分</dt>
+            <dd id="best">0</dd>
+          </div>
+        </dl>
+
+        <div class="actions">
+          <button id="restart" class="button button-primary" type="button"><span aria-hidden="true">＋</span> 新开一局</button>
+          <button id="undo" class="button button-secondary" type="button" aria-label="撤回上一步，每局一次">
+            <span aria-hidden="true">↶</span> <span id="undo-label">撤回</span>
+          </button>
+        </div>
+
+        <div class="progress">
+          <div class="progress-label">
+            <label for="progress-bar">最大方块</label>
+            <span><strong id="largest">2</strong><span class="progress-target"> / 2048</span></span>
+          </div>
+          <progress id="progress-bar" value="1" max="11" aria-valuetext="2，目标 2048"></progress>
+        </div>
+      </section>
+
+      <section class="play-area" aria-labelledby="board-title">
+        <header class="board-header">
+          <h2 id="board-title">棋盘</h2>
+          <span class="move-count">步数 <strong id="moves">0</strong></span>
+        </header>
+
+        <div class="board-shell">
+          <div id="board" class="board" tabindex="0" role="group" aria-label="4 乘 4 数字棋盘" aria-describedby="controls">
+            <div class="board-row" role="group" aria-label="第 1 行"></div>
+            <div class="board-row" role="group" aria-label="第 2 行"></div>
+            <div class="board-row" role="group" aria-label="第 3 行"></div>
+            <div class="board-row" role="group" aria-label="第 4 行"></div>
+          </div>
+          <div id="result" class="result" hidden>
+            <div class="result-card">
+              <h2 id="result-title"></h2>
+              <p id="result-description"></p>
+              <button id="result-action" class="button button-primary" type="button"></button>
+              <button id="result-undo" class="button button-secondary" type="button">撤回一步</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="controls" class="controls-hint">
+          <span class="keyboard-hint"><span class="keys" aria-hidden="true"><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd></span><span>方向键或 WASD</span></span>
+          <span class="touch-hint"><span aria-hidden="true">↔</span> 触屏滑动</span>
+        </div>
+      </section>
+    </main>
+    <p id="announcement" class="visually-hidden" role="status"></p>
+  </div>
+
+  <dialog id="help-dialog" aria-labelledby="help-title">
+    <h2 id="help-title">怎么玩</h2>
+    <ul>
+      <li>用方向键、WASD 或触屏滑动，让整盘方块朝同一个方向移动。</li>
+      <li>相同数字相撞时合并，分数增加合并后的数字。每次有效移动后会出现一块 2 或 4。</li>
+      <li>合出 2048 就达成目标，还可以继续挑战。棋盘无法再移动时，本局结束。</li>
+      <li>每局有一次撤回机会。</li>
+    </ul>
+    <form method="dialog"><button class="button button-primary" type="submit" autofocus>返回棋盘</button></form>
+  </dialog>
+</body>
+</html>
